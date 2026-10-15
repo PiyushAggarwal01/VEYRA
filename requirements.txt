@@ -1,0 +1,12 @@
+# Web server
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.5
+
+# ML (CPU build: much smaller, ideal for deployment)
+tensorflow-cpu>=2.16
+numpy>=1.26
+
+# IMPORTANT: for exact reproducibility, replace the lines above with the
+# versions from your training environment (run `pip freeze | findstr /i "tensorflow keras numpy"`).
+# The .keras model and tokenizer.pkl must load with the same Keras/TF version they were saved with.
