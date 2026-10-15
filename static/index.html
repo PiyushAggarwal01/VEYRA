@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emotion Reader</title>
+  <meta name="description" content="Type a sentence and see which of six emotions a BiGRU model reads in it.">
+  <meta name="theme-color" content="#f1f3f8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%99%82%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="field" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+
+  <main class="wrap">
+    <header class="top">
+      <span class="brand">Emotion Reader</span>
+      <span id="status" class="status" data-state="checking" role="status">
+        <i></i><span id="status-text">Checking model…</span>
+      </span>
+    </header>
+
+    <div class="grid">
+      <section class="col-input">
+        <h1>How does this sentence feel?</h1>
+        <p class="lede">Write anything. The model scores it across sadness, joy, love, anger, fear and surprise.</p>
+
+        <label for="text" class="sr-only">Sentence to analyze</label>
+        <div class="editor">
+          <textarea id="text" rows="5" maxlength="2000" placeholder="I can't believe they remembered my birthday…" autofocus></textarea>
+          <div class="editor-foot">
+            <span id="count">0 / 2000</span>
+            <span class="hint">Ctrl + Enter to analyze</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="go" class="primary" type="button">Analyze</button>
+          <button id="clear" class="ghost" type="button">Clear</button>
+        </div>
+        <div id="error" class="error" role="alert" hidden></div>
+
+        <div class="examples">
+          <p>Try an example</p>
+          <div id="chips" class="chips"></div>
+        </div>
+      </section>
+
+      <aside class="col-result" aria-live="polite">
+        <div class="stage">
+          <svg class="ring" viewBox="0 0 240 240" aria-hidden="true">
+            <circle class="ring-bg" cx="120" cy="120" r="108"/>
+            <circle id="ring" class="ring-fg" cx="120" cy="120" r="108"/>
+          </svg>
+          <div id="orb" class="orb" data-state="idle"><span id="emoji">🙂</span></div>
+        </div>
+
+        <div class="verdict">
+          <h2 id="label">Waiting for a sentence</h2>
+          <p id="sub">Results appear here.</p>
+        </div>
+
+        <ul id="bars" class="bars"></ul>
+
+        <div id="history-wrap" class="history" hidden>
+          <p>Recent</p>
+          <ul id="history"></ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/static/script.js" defer></script>
+</body>
+</html>
